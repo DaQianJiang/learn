@@ -1,0 +1,14 @@
+@startuml
+app -> getaway: 车主输入个人信息
+
+portalProvider->getaway:
+getaway->app:返回车型/车型颜色
+app -> getaway: 车主输入车辆信息
+
+app -> getaway: 活体检测
+configcenter->阿里云:https://help.aliyun.com/document_detail\n/61362.html?spm=a2c4g.11186623.2.11.74c87b980CkrAo
+
+
+阿里云->passengergateway:
+
+@enduml

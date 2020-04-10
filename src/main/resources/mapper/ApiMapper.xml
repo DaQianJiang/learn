@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.learn.mapper.ApiMapper">
+  <resultMap id="BaseResultMap" type="com.example.learn.entity.Api">
+    <result column="id" jdbcType="INTEGER" property="id" />
+    <result column="des" jdbcType="VARCHAR" property="des" />
+    <result column="protocal" jdbcType="VARCHAR" property="protocal" />
+    <result column="host" jdbcType="VARCHAR" property="host" />
+    <result column="port" jdbcType="VARCHAR" property="port" />
+    <result column="method" jdbcType="VARCHAR" property="method" />
+    <result column="path" jdbcType="VARCHAR" property="path" />
+    <result column="requestHeader" jdbcType="VARCHAR" property="requestHeader" />
+    <result column="param" jdbcType="VARCHAR" property="param" />
+    <result column="userId" jdbcType="INTEGER" property="userId" />
+    <result column="createTime" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="updateTime" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="projectId" jdbcType="INTEGER" property="projectId" />
+    <result column="assertInfo" jdbcType="VARCHAR" property="assertInfo" />
+    <result column="cookis" jdbcType="VARCHAR" property="cookis" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="mid" jdbcType="INTEGER" property="mid" />
+    <result column="left1" jdbcType="VARCHAR" property="left1" />
+    <result column="left2" jdbcType="VARCHAR" property="left2" />
+  </resultMap>
+<!--  插入-->
+  <insert id="insert" parameterType="com.example.learn.entity.Api">
+    insert into api (id, des, protocal, 
+      `host`, port, `method`, 
+      `path`, requestHeader, param, 
+      userId, createTime, updateTime, 
+      projectId, assertInfo, cookis, 
+      `status`, mid, left1, 
+      left2)
+    values (#{id,jdbcType=INTEGER}, #{des,jdbcType=VARCHAR}, #{protocal,jdbcType=VARCHAR}, 
+      #{host,jdbcType=VARCHAR}, #{port,jdbcType=VARCHAR}, #{method,jdbcType=VARCHAR}, 
+      #{path,jdbcType=VARCHAR}, #{requestHeader,jdbcType=VARCHAR}, #{param,jdbcType=VARCHAR}, 
+      #{userId,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{projectId,jdbcType=INTEGER}, #{assertInfo,jdbcType=VARCHAR}, #{cookis,jdbcType=VARCHAR}, 
+      #{status,jdbcType=INTEGER}, #{mid,jdbcType=INTEGER}, #{left1,jdbcType=VARCHAR}, 
+      #{left2,jdbcType=VARCHAR})
+  </insert>
+<!--  查找全部信息status=1-->
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, des, protocal, `host`, port, `method`, `path`, requestHeader, param, userId, 
+    createTime, updateTime, projectId, assertInfo, cookis, `status`, mid, left1, left2
+    from api where status = 1
+    order by updateTime desc
+  </select>
+<!--  删除api信息-->
+  <delete id="deleteApiInfo" parameterType="java.lang.Integer">
+    update `api`
+    set `status` = 0
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+<!--  修改后更新数据-->
+  <update id="updateApiInfo" parameterType="com.example.learn.entity.Api">
+    update api
+    set #{des,jdbcType=VARCHAR}, #{protocal,jdbcType=VARCHAR},
+      #{host,jdbcType=VARCHAR}, #{port,jdbcType=VARCHAR}, #{method,jdbcType=VARCHAR},
+      #{path,jdbcType=VARCHAR}, #{requestHeader,jdbcType=VARCHAR}, #{param,jdbcType=VARCHAR},
+      #{userId,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP},
+      #{projectId,jdbcType=INTEGER}, #{assertInfo,jdbcType=VARCHAR}, #{cookis,jdbcType=VARCHAR},
+      #{status,jdbcType=INTEGER}, #{mid,jdbcType=INTEGER}, #{left1,jdbcType=VARCHAR},
+      #{left2,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <!--  查看某条api的详细信息-->
+  <select id="selectDetail" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select *
+    from api where id = #{id,jdbcType=INTEGER}
+  </select>
+
+</mapper>

@@ -1,0 +1,41 @@
+@startuml
+客户端 -> web:登录
+web->provider:用户名和密码,deviceId
+provider->provider:生成token
+provider->redis:
+provider->web:
+
+
+客户端 -> web: 1 请求订单列表\n/app/repertory/order/list/query
+web->provider:
+provider->web:
+web -> 客户端:1 返回订单列表信息展示
+
+客户端 -> web: 2 请求订单详情 \n/app/repertory/order/detail/{orderNum}
+web->provider:
+provider->web:
+web->客户端: 2 返回订单详情
+
+客户端 -> web: 3 扫码/app/wineMallOutStock/scanOutStock \n只传goodsCode
+
+web->provider:
+provider->web: 3返回winemall-in-stock表中的库存余量
+web->客户端: 3 返回库存余量前端弹框展示
+
+客户端->web: 4 输入数量/点击确定\n/app/wineMallOutStock/confirmOutStock
+web->provider:订单绑定商品编码信息并扣除库存
+provider->web:
+客户端->web:/app/wineMallOutStock/completeOutStock\n出货端--出库完成（主要修改订单状态,传orderId）
+web->provider:订单绑定商品编码信息并扣除库存
+provider->web:
+
+
+客户端->web:6 绑定物流信息
+
+客户端->web:5 出货端-获取订单出库详情列表,传orderId\n/app/wineMallOutStock/getOutStockDetail/{orderId}
+web->provider:
+provider->web:
+客户端->web:返回出库详情信息
+
+
+@enduml
