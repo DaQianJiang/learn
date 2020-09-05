@@ -23,7 +23,7 @@ public class UserController {
     @RequestMapping(value = "/index" , method = RequestMethod.GET)
     public String  test(){
         //System.out.println("test");
-        return "Login/login";
+        return "login";
         //return "test";
     }
 
