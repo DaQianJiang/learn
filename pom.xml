@@ -115,9 +115,36 @@
                     <overwrite>true</overwrite>
                 </configuration>
             </plugin>
+
+
+<!--            <plugin>-->
+<!--                <groupId>org.jacoco</groupId>-->
+<!--                <artifactId>jacoco-maven-plugin</artifactId>-->
+<!--                <version>0.8.0.201801022044</version>-->
+<!--                <configuration>-->
+<!--                    &lt;!&ndash;指定生成 .exec 文件的存放位置&ndash;&gt;-->
+<!--                    <destFile>target/coverage-reports/jacoco-unit.exec</destFile>-->
+<!--                    &lt;!&ndash;Jacoco 是根据 .exec 文件生成最终的报告，所以需指定 .exec 的存放路径&ndash;&gt;-->
+<!--                    <dataFile>target/coverage-reports/jacoco-unit.exec</dataFile>-->
+<!--                </configuration>-->
+<!--                <executions>-->
+<!--                    <execution>-->
+<!--                        <id>jacoco-initialize</id>-->
+<!--                        <goals>-->
+<!--                            <goal>prepare-agent</goal>-->
+<!--                        </goals>-->
+<!--                    </execution>-->
+<!--                    <execution>-->
+<!--                        <id>jacoco-site</id>-->
+<!--                        <phase>test</phase>-->
+<!--                        <goals>-->
+<!--                            <goal>report</goal>-->
+<!--                        </goals>-->
+<!--                    </execution>-->
+<!--                </executions>-->
+<!--            </plugin>-->
+
         </plugins>
-
-
 
     </build>
 
